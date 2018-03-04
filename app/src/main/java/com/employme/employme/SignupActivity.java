@@ -40,14 +40,18 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void registerAccount(View view) {
+
         if ((!etSignupPassword.getText().toString().equals(etSignupConfirmPassword.getText().toString())) ||
                 etSignupFullName.getText().toString().equals("") ||
                 etSignupEmail.getText().toString().equals("") ||
-                etSignupPassword.getText().toString().equals(""))
+                etSignupPassword.getText().toString().equals("") ||
+                SQLiteDB.getInstance().getUser(etSignupEmail.getText().toString()) != null ||
+                etSignupEmail.getText().toString().contains(" "))
         {
             Toast.makeText(this, "Check your input", Toast.LENGTH_LONG).show();
             return;
         }
+
         SQLiteDB.getInstance().addUser(new User(
                 etSignupFullName.getText().toString(),
                 etSignupEmail.getText().toString().toLowerCase(),

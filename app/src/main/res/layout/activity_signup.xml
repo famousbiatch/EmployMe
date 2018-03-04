@@ -7,7 +7,6 @@
     tools:context="com.employme.employme.SignupActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:screenOrientation="portrait"
     android:onClick="clearFocus">
 
     <android.support.design.widget.TextInputLayout

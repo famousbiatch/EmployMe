@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         User user = SQLiteDB.getInstance().getUser(etEmail.getText().toString().toLowerCase());
 
-        if (user == null) {
+        if (user == null || etEmail.getText().toString().contains(" ")) {
             Toast.makeText(this, "Incorrect E-mail", Toast.LENGTH_LONG).show();
         }
         else if (etPassword.getText().toString().equals(user.getPassword()))
@@ -66,6 +66,11 @@ public class LoginActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Incorrect Password", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goToForgotPassword(View view) {
+        Intent i = new Intent(this, ForgotPasswordActivity.class);
+        startActivity(i);
     }
 
     @Override
