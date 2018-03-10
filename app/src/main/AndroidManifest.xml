@@ -32,12 +32,21 @@
             android:name=".JobList"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".ForgotPasswordActivity"
+        <activity
+            android:name=".ForgotPasswordActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChangePasswordActivity"
+        <activity
+            android:name=".ChangePasswordActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".CreateJobActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".EmployerDashboardActivity" />
     </application>
 
 </manifest>

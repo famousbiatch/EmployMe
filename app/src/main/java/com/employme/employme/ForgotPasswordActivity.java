@@ -16,9 +16,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
         setContentView(R.layout.activity_forgot_password);
 
         initialize();
@@ -31,13 +28,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     public void clearFocus(View view) { view.requestFocus(); }
 
     public void goToChangePassword(View view) {
-        if (SQLiteDB.getInstance().getUser(etForgotPasswordEmail.getText().toString()) == null)
+        if (SQLiteDB.getInstance().getUser(etForgotPasswordEmail.getText().toString().toLowerCase()) == null)
         {
             Toast.makeText(this, "Incorrect E-mail", Toast.LENGTH_LONG).show();
             return;
         }
         Intent i = new Intent(this, ChangePasswordActivity.class);
-        i.putExtra("email", etForgotPasswordEmail.getText().toString());
+        i.putExtra("email", etForgotPasswordEmail.getText().toString().toLowerCase());
         startActivity(i);
     }
 }

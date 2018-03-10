@@ -5,11 +5,15 @@
     android:layout_height="match_parent"
     tools:context="com.employme.employme.JobList">
 
+    <include
+        android:id="@+id/actionbar"
+        layout="@layout/action_bar" />
+
     <ListView
         android:id="@+id/lstJobs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_below="@+id/actionbar" />
 
 </RelativeLayout>

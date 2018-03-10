@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/employerDashboard"
+        android:title="Employer Dashboard"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_name"></item>
+
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/createJob"
+        android:title="Create Business"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/about"
+        android:title="About"
+        app:showAsAction="never"></item>
+</menu>

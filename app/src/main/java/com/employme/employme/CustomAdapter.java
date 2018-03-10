@@ -67,7 +67,7 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
 
             holder = new ViewHolder();
             holder.text = (TextView) vi.findViewById(R.id.tvBusinessName);
-            holder.text1 = (TextView) vi.findViewById(R.id.tvJobDescription);
+            holder.text1 = (TextView) vi.findViewById(R.id.tvJobCategory);
             holder.image = (ImageView) vi.findViewById(R.id.imgLogo);
 
             vi.setTag(holder);
@@ -88,7 +88,7 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
 
 
             holder.text.setText(tempValues.getBusinessName());
-            holder.text1.setText(tempValues.getJobDescription());
+            holder.text1.setText(tempValues.getJobCategory());
             holder.image.setImageResource(
                     res.getIdentifier("com.example.BusinessLogo:drawable/" + tempValues.getLogo(),
                             null,null));

@@ -7,12 +7,12 @@ public class JobCard {
 
     private  String businessName;
     private  String logo;
-    private  String jobDescription;
+    private  String jobCategory;
 
     public JobCard() {
         businessName = "";
         logo = "";
-        jobDescription = "";
+        jobCategory = "";
     }
 
     public String getBusinessName() {
@@ -31,17 +31,17 @@ public class JobCard {
         this.logo = logo;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getJobCategory() {
+        return jobCategory;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setJobCategory(String jobCategory) {
+        this.jobCategory = jobCategory;
     }
 
-    public JobCard(String businessName, String logo, String jobDescription) {
+    public JobCard(String businessName, String logo, String jobCategory) {
         this.businessName = businessName;
         this.logo = logo;
-        this.jobDescription = jobDescription;
+        this.jobCategory = jobCategory;
     }
 }
