@@ -51,6 +51,12 @@ public class JobList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
+            case R.id.favorites:
+            {
+                Intent i = new Intent(this, FavoritesActivity.class);
+                startActivity(i);
+                break;
+            }
             case R.id.employerDashboard:
             {
                 Intent i = new Intent(this, EmployerDashboardActivity.class);
