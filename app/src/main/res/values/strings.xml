@@ -73,4 +73,15 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+    <string-array name="job_categories">
+        <item>Chef</item>
+        <item>Programmer</item>
+        <item>Actor</item>
+        <item>Architecht</item>
+        <item>Pilot</item>
+        <item>Lawyer</item>
+        <item>Janitor</item>
+        <item>Nurse</item>
+    </string-array>
 </resources>

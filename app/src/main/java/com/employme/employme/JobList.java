@@ -87,6 +87,14 @@ public class JobList extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
+            case R.id.signOut:
+            {
+                SQLiteDB.getInstance().updateSession("");
+                Intent i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+                Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -13,6 +13,170 @@ import android.util.Log;
 
 public class SQLiteDB extends SQLiteOpenHelper {
 
+    ///////////////////////////////////////////////////////////
+    private static final String TABLE_SESSION = "session";
+
+    private static final String KEY_SESSION_ID = "id";
+    private static final String KEY_SESSION_USER_ID = "user_id";
+
+    private static final String[] SESSION_COLUMNS = {KEY_SESSION_ID, KEY_SESSION_USER_ID};
+
+    public List<String> getAllSessions() {
+        List<String> users = new LinkedList<String>();
+
+        // 1. build the query
+        String query = "SELECT  * FROM " + TABLE_SESSION;
+
+        // 2. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // 3. go over each row, build user and add it to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                users.add(cursor.getString(0) + " " + cursor.getString(1));
+
+            } while (cursor.moveToNext());
+        }
+
+        return users;
+    }
+
+    public String getSessionUser() {
+        //IF 0 FRI
+        // 1. get reference to readable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // 2. build query
+        Cursor cursor =
+                db.query(TABLE_SESSION, // a. table
+                        SESSION_COLUMNS, // b. column names
+                        " id = ?", // c. selections
+                        new String[] { String.valueOf(1) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            String userID = cursor.getString(1);
+            return userID;
+        }
+        else {
+            createSessionEntry();
+            return "";
+        }
+    }
+
+    private void createSessionEntry() {
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_SESSION_USER_ID, "");
+
+        // 3. insert
+        db.insert(TABLE_SESSION, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        // 4. close
+        db.close();
+    }
+
+    public int updateSession(String newSession) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_SESSION_USER_ID, newSession);
+
+        int i = db.update(TABLE_SESSION, //table
+                values, // column/value
+                KEY_SESSION_ID + " = ?", // selections
+                new String[] { String.valueOf(1) }); //selection args
+
+        db.close();
+        return i;
+    }
+    ///////////////////////////////////////////////////////////
+    private static final String TABLE_JOBS = "joblisting";
+
+    private static final String KEY_JOB_ID = "id";
+    private static final String KEY_EMPLOYER_ID = "employer_id";
+    private static final String KEY_BUSINESS_NAME = "business_name";
+    private static final String KEY_LOGO_URL = "logo_url";
+    private static final String KEY_JOB_DESCRIPTION = "job_description";
+    private static final String KEY_BUSINESS_NUMBER = "business_number";
+    private static final String KEY_LOCATION = "location";
+    private static final String KEY_JOB_CATEGORY = "job_category";
+    private static final String KEY_MIN_AGE = "min_age";
+    private static final String KEY_MAX_AGE = "max_age";
+
+    private static final String[] JOBLISTING_COLUMNS = {KEY_JOB_ID, KEY_EMPLOYER_ID, KEY_BUSINESS_NAME, KEY_LOGO_URL, KEY_JOB_DESCRIPTION, KEY_BUSINESS_NUMBER, KEY_LOCATION, KEY_JOB_CATEGORY, KEY_MIN_AGE, KEY_MAX_AGE};
+
+    public String getJobListing(String business_number){
+
+        // 1. get reference to readable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // 2. build query
+        Cursor cursor =
+                db.query(TABLE_JOBS, // a. table
+                        JOBLISTING_COLUMNS, // b. column names
+                        " business_number = ?", // c. selections
+                        new String[] { String.valueOf(business_number) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        // 3. if we got results get the first one
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            String businessName = cursor.getString(2);
+            Log.d("getJobListing(" + business_number + ")", businessName);
+            return businessName;
+        }
+        else {
+            Log.d("getJobListing(" + business_number + ")", "null");
+            return null;
+        }
+    }
+
+    public void addJobListing(String employer_id, String business_name, String logo_url, String job_description, String business_number, String location, String job_category, String min_age, String max_age) {
+        Log.d("addJobListing", business_name);
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_EMPLOYER_ID, employer_id);
+        values.put(KEY_BUSINESS_NAME, business_name);
+        values.put(KEY_LOGO_URL, logo_url);
+        values.put(KEY_JOB_DESCRIPTION, job_description);
+        values.put(KEY_BUSINESS_NUMBER, business_number);
+        values.put(KEY_LOCATION, location);
+        values.put(KEY_JOB_CATEGORY, job_category);
+        values.put(KEY_MIN_AGE, min_age);
+        values.put(KEY_MAX_AGE, max_age);
+
+        // 3. insert
+        db.insert(TABLE_JOBS, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        // 4. close
+        db.close();
+    }
+    ///////////////////////////////////////////////////////////
+
     private static final SQLiteDB db = new SQLiteDB(MyApplication.getAppContext());
 
     public static SQLiteDB getInstance() {
@@ -29,21 +193,40 @@ public class SQLiteDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // SQL statement to create user table
-        String CREATE_USER_TABLE = "CREATE TABLE User ( " +
+        String CREATE_USER_TABLE = "CREATE TABLE user ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, "+
                 "email TEXT, "+
                 "password TEXT )";
 
-        // create userss table
+        String CREATE_JOBS_TABLE = "CREATE TABLE joblisting ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "employer_id INTEGER, " +
+                "business_name TEXT, " +
+                "logo_url TEXT, " +
+                "job_description TEXT, " +
+                "business_number TEXT, " +
+                "location TEXT, " +
+                "job_category TEXT, " +
+                "min_age INTEGER, " +
+                "max_age INTEGER )";
+
+        String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id TEXT )";
+
+        //Create the tables
         db.execSQL(CREATE_USER_TABLE);
-        //db.execSQL(CREATE_CAR_TABLE);
+        db.execSQL(CREATE_JOBS_TABLE);
+        db.execSQL(CREATE_SESSION_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older users table if existed
         db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS joblisting");
+        db.execSQL("DROP TABLE IF EXISTS session");
 
         // create fresh users table
         this.onCreate(db);
@@ -224,80 +407,4 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
         Log.d("deleteUser", user.toString());
     }
-/*
-    // users table name
-    private static final String TABLE_CAR = "car";
-
-    // users Table Columns names
-    private static final String KEY_COMPANY = "company";
-    private static final String KEY_MODEL = "model";
-    private static final String KEY_YEAR = "year";
-    private static final String KEY_ENGINE = "engine";
-    private static final String KEY_HORSE_POWER = "horse_power";
-    private static final String KEY_CONDITION = "condition";
-    private static final String KEY_PHONE = "phone";
-
-    private static final String[] CAR_COLUMNS = {KEY_ID,KEY_COMPANY,KEY_MODEL,KEY_YEAR, KEY_ENGINE, KEY_HORSE_POWER, KEY_CONDITION, KEY_PHONE};
-
-    public void addCar(Car car){
-        Log.d("addCar", car.toString());
-        // 1. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // 2. create ContentValues to add key "column"/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_COMPANY, car.getCompany()); // get title
-        values.put(KEY_MODEL, car.getModel()); // get title
-        values.put(KEY_YEAR, car.getYear());
-        values.put(KEY_ENGINE,car.getEngine());
-        values.put(KEY_HORSE_POWER,car.getHorsePower());
-        values.put(KEY_CONDITION,car.getCondition());
-        values.put(KEY_PHONE,car.getPhone());
-
-        // get title
-
-        // 3. insert
-        db.insert(TABLE_CAR, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
-
-        // 4. close
-        db.close();
-    }
-
-    // Get All cars
-    public List<Car> getAllCars() {
-        List<Car> cars = new LinkedList<Car>();
-
-        // 1. build the query
-        String query = "SELECT  * FROM " + TABLE_CAR;
-
-        // 2. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        // 3. go over each row, build user and add it to list
-        Car car = null;
-        if (cursor.moveToFirst()) {
-            do {
-                car = new Car();
-                car.setId(Integer.parseInt(cursor.getString(0)));
-                car.setCompany(cursor.getString(1));
-                car.setModel(cursor.getString(2));
-                car.setYear(cursor.getString(3));
-                car.setEngine(cursor.getDouble(4));
-                car.setHorsePower(cursor.getInt(5));
-                car.setCondition(cursor.getString(6));
-                car.setPhone(cursor.getString(7));
-
-                // Add user to users
-                cars.add(car);
-            } while (cursor.moveToNext());
-        }
-
-        Log.d("getAllCars()", cars.toString());
-
-        // return users
-        return cars;
-    }*/
 }

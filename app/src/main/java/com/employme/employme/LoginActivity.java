@@ -31,7 +31,12 @@ public class LoginActivity extends AppCompatActivity {
 
         initialize();
 
-        //CHECK IF USER ALREADY LOGGED IN; GO TO HOMEPAGE ACTIVITY
+        if (!SQLiteDB.getInstance().getSessionUser().equals(""))
+        {
+            //SEND TO EMPLOYER DASHBOARD IF USER HAS ANY LISTED JOBS
+            Intent i = new Intent(this, JobList.class);
+            startActivity(i);
+        }
     }
 
     private void initialize() {
@@ -56,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         else if (etPassword.getText().toString().equals(user.getPassword()))
         {
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+            SQLiteDB.getInstance().updateSession(Integer.toString(user.getId()));
             Intent intent = new Intent(this, JobList.class);
             startActivity(intent);
         }

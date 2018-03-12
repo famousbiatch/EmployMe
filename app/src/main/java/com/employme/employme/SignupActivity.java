@@ -49,10 +49,13 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        SQLiteDB.getInstance().addUser(new User(
+        User user = new User(
                 etSignupFullName.getText().toString(),
                 etSignupEmail.getText().toString().toLowerCase(),
-                etSignupPassword.getText().toString()));
+                etSignupPassword.getText().toString());
+
+        SQLiteDB.getInstance().addUser(user);
+        SQLiteDB.getInstance().updateSession(Integer.toString(SQLiteDB.getInstance().getUser(etSignupEmail.getText().toString()).getId()));
         Intent intent = new Intent(this, JobList.class);
         startActivity(intent);
     }
