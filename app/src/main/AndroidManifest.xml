@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
+            android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,6 +23,7 @@
         </activity>
         <activity
             android:name=".SignupActivity"
+            android:noHistory="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
@@ -40,7 +42,8 @@
             android:name=".ChangePasswordActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".CreateJobActivity" />
+        <activity android:name=".CreateJobActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
