@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/favoritesSECOND"
+        android:title="Favorites"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_star"></item>
+
+    <item
+        android:id="@+id/jobList"
+        android:icon="@drawable/ic_list"
+        android:title="Job List"
+        app:showAsAction="always"></item>
+
+    <item android:id="@+id/profileSECOND"
+        android:title="Profile"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/settingsSECOND"
+        android:title="Settings"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/createJobSECOND"
+        android:title="Create Business"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/aboutSECOND"
+        android:title="About"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/signOutSECOND"
+    android:title="Sign Out"
+    app:showAsAction="never"></item>
+
+</menu>

@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.employme.employme.EmployerDashboardActivity">
 
+    <include
+        android:id="@+id/actionbarSecond"
+        layout="@layout/action_bar_second"/>
+
 </android.support.constraint.ConstraintLayout>
