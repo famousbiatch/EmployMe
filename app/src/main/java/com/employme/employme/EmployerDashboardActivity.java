@@ -1,15 +1,25 @@
 package com.employme.employme;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployerDashboardActivity extends AppCompatActivity {
+
+    ListView list;
+    CustomAdapter adapter;
+    public EmployerDashboardActivity CustomListView = null;
+    public ArrayList<JobCard> CustomListViewValuesArr = new ArrayList<JobCard>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +27,43 @@ public class EmployerDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employer_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.actionbarSecond);
         setSupportActionBar(toolbar);
+
+        CustomListView = this;
+
+        setListData();
+
+        Resources res = getResources();
+        list = (ListView) findViewById(R.id.lstMyJobs);
+
+        adapter = new CustomAdapter(CustomListView, CustomListViewValuesArr, res);
+        list.setAdapter(adapter);
+    }
+
+    public void setListData() {
+        for (int jobID : SQLiteDB.getInstance().getAllJobs())
+        {
+            final JobCard entry = new JobCard();
+            List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
+
+            if (!info.get(0).equals(SQLiteDB.getInstance().getSessionUser()))
+                continue;
+
+            entry.setId(Integer.valueOf(info.get(0)));
+            entry.setLogo(info.get(3));
+            entry.setBusinessName(info.get(2));
+            entry.setJobCategory(info.get(7));
+
+            CustomListViewValuesArr.add(entry);
+        }
+        //another loop here to add ALL other jobs that don't match city
+    }
+
+    public void onItemClick(int mPosition) {
+        JobCard tempValues = (JobCard) CustomListViewValuesArr.get(mPosition);
+
+        Intent i = new Intent(this, JobPageActivity.class);
+        i.putExtra("job_id", tempValues.getId());
+        startActivity(i);
     }
 
     @Override

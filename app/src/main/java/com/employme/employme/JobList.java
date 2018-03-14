@@ -41,6 +41,30 @@ public class JobList extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
+    public void setListData() {
+        for (int jobID : SQLiteDB.getInstance().getAllJobs())
+        {
+            final JobCard entry = new JobCard();
+            List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
+
+            entry.setId(Integer.valueOf(info.get(0)));
+            entry.setLogo(info.get(3));
+            entry.setBusinessName(info.get(2));
+            entry.setJobCategory(info.get(7));
+
+            CustomListViewValuesArr.add(entry);
+        }
+        //another loop here to add ALL other jobs that don't match city
+    }
+
+    public void onItemClick(int mPosition) {
+        JobCard tempValues = (JobCard) CustomListViewValuesArr.get(mPosition);
+
+        Intent i = new Intent(this, JobPageActivity.class);
+        i.putExtra("job_id", tempValues.getId());
+        startActivity(i);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -98,28 +122,5 @@ public class JobList extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setListData()
-    {
-        for (int jobID : SQLiteDB.getInstance().getAllJobs())
-        {
-            final JobCard entry = new JobCard();
-            List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
-
-            entry.setLogo(info.get(2));
-            entry.setBusinessName(info.get(1));
-            entry.setJobCategory(info.get(6));
-
-            CustomListViewValuesArr.add(entry);
-        }
-        //another loop here to add ALL other jobs that don't match city
-    }
-
-    public void onItemClick(int mPosition)
-    {
-        JobCard tempValues = (JobCard) CustomListViewValuesArr.get(mPosition);
-
-        Toast.makeText(CustomListView,"" + tempValues.getBusinessName() + " Logo:" + tempValues.getLogo() + " Job category:" + tempValues.getJobCategory(), Toast.LENGTH_LONG).show();
     }
 }

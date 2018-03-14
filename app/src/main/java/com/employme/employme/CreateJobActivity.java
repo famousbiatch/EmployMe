@@ -29,13 +29,13 @@ public class CreateJobActivity extends AppCompatActivity {
     public void registerJob(View view) {
 
         if (etBusinessName.getText().toString().length() < 2 ||
-                etJobDescription.getText().toString().length() < 2 ||
-                etBusinessNumber.getText().toString().length() != 7 ||
-                etBusinessNumber.getText().toString().length() != 9 ||
-                etBusinessNumber.getText().toString().length() != 10 ||
-                (!etBusinessNumber.getText().toString().startsWith("05")) ||
-                (!etBusinessNumber.getText().toString().startsWith("04")) ||
-                (!etBusinessNumber.getText().toString().startsWith("6")) ||
+                etJobDescription.getText().toString().length() < 2 || (
+                etBusinessNumber.getText().toString().length() != 7 &&
+                etBusinessNumber.getText().toString().length() != 9 &&
+                etBusinessNumber.getText().toString().length() != 10) || (
+                (!etBusinessNumber.getText().toString().startsWith("05")) &&
+                (!etBusinessNumber.getText().toString().startsWith("04")) &&
+                (!etBusinessNumber.getText().toString().startsWith("6"))) ||
                 etBusinessLocation.getText().toString().length() < 2 ||
                 etMinAge.getText().toString().length() < 1 ||
                 etMaxAge.getText().toString().length() < 1)
