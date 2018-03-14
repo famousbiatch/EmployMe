@@ -27,8 +27,24 @@ public class CreateJobActivity extends AppCompatActivity {
     }
 
     public void registerJob(View view) {
-        //spJobCategory.getSelectedItem().toString() :: SEND THIS TEXT TO DATABASE
-        SQLiteDB.getInstance().addJobListing("PUT CURRENT LOGGED IN USER HERE", etBusinessName.getText().toString(),
+
+        if (etBusinessName.getText().toString().length() < 2 ||
+                etJobDescription.getText().toString().length() < 2 ||
+                etBusinessNumber.getText().toString().length() != 7 ||
+                etBusinessNumber.getText().toString().length() != 9 ||
+                etBusinessNumber.getText().toString().length() != 10 ||
+                (!etBusinessNumber.getText().toString().startsWith("05")) ||
+                (!etBusinessNumber.getText().toString().startsWith("04")) ||
+                (!etBusinessNumber.getText().toString().startsWith("6")) ||
+                etBusinessLocation.getText().toString().length() < 2 ||
+                etMinAge.getText().toString().length() < 1 ||
+                etMaxAge.getText().toString().length() < 1)
+        {
+            Toast.makeText(this, "Check your input", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        SQLiteDB.getInstance().addJobListing(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), etBusinessName.getText().toString(),
                 "LOGO URL HERE", etJobDescription.getText().toString(), etBusinessNumber.getText().toString(), etBusinessLocation.getText().toString(),
                 spJobCategory.getSelectedItem().toString(), etMinAge.getText().toString(), etMaxAge.getText().toString());
         Toast.makeText(this, "Successfully Listed Job", Toast.LENGTH_SHORT).show();

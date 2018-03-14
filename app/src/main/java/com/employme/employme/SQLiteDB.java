@@ -107,29 +107,42 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String TABLE_JOBS = "joblisting";
 
     private static final String KEY_JOB_ID = "id";
-    private static final String KEY_EMPLOYER_ID = "employer_id";
-    private static final String KEY_BUSINESS_NAME = "business_name";
-    private static final String KEY_LOGO_URL = "logo_url";
-    private static final String KEY_JOB_DESCRIPTION = "job_description";
-    private static final String KEY_BUSINESS_NUMBER = "business_number";
-    private static final String KEY_LOCATION = "location";
-    private static final String KEY_JOB_CATEGORY = "job_category";
-    private static final String KEY_MIN_AGE = "min_age";
-    private static final String KEY_MAX_AGE = "max_age";
+    private static final String KEY_EMPLOYER_ID = "employer_id"; //0
+    private static final String KEY_BUSINESS_NAME = "business_name"; //1
+    private static final String KEY_LOGO_URL = "logo_url"; //2
+    private static final String KEY_JOB_DESCRIPTION = "job_description"; //3
+    private static final String KEY_BUSINESS_NUMBER = "business_number"; //4
+    private static final String KEY_LOCATION = "location"; //5
+    private static final String KEY_JOB_CATEGORY = "job_category"; //6
+    private static final String KEY_MIN_AGE = "min_age"; //7
+    private static final String KEY_MAX_AGE = "max_age"; //8
 
     private static final String[] JOBLISTING_COLUMNS = {KEY_JOB_ID, KEY_EMPLOYER_ID, KEY_BUSINESS_NAME, KEY_LOGO_URL, KEY_JOB_DESCRIPTION, KEY_BUSINESS_NUMBER, KEY_LOCATION, KEY_JOB_CATEGORY, KEY_MIN_AGE, KEY_MAX_AGE};
 
-    public String getJobListing(String business_number){
+    public List<Integer> getAllJobs() {
+        List<Integer> jobs = new LinkedList<Integer>();
 
-        // 1. get reference to readable DB
+        String query = "SELECT  * FROM " + TABLE_JOBS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                jobs.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
+        }
+        return jobs;
+    }
+
+    public List<String> getJobListing(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // 2. build query
         Cursor cursor =
                 db.query(TABLE_JOBS, // a. table
                         JOBLISTING_COLUMNS, // b. column names
-                        " business_number = ?", // c. selections
-                        new String[] { String.valueOf(business_number) }, // d. selections args
+                        " id = ?", // c. selections
+                        new String[] { String.valueOf(id) }, // d. selections args
                         null, // e. group by
                         null, // f. having
                         null, // g. order by
@@ -139,18 +152,23 @@ public class SQLiteDB extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
+        List<String> jobInfo = new LinkedList<String>();
         if (cursor.getCount() > 0) {
-            String businessName = cursor.getString(2);
-            Log.d("getJobListing(" + business_number + ")", businessName);
-            return businessName;
-        }
-        else {
-            Log.d("getJobListing(" + business_number + ")", "null");
-            return null;
-        }
+            jobInfo.add(String.valueOf(cursor.getInt(1)));
+            jobInfo.add(cursor.getString(2));
+            jobInfo.add(cursor.getString(3));
+            jobInfo.add(cursor.getString(4));
+            jobInfo.add(cursor.getString(5));
+            jobInfo.add(cursor.getString(6));
+            jobInfo.add(cursor.getString(7));
+            jobInfo.add(cursor.getString(8));
+            jobInfo.add(cursor.getString(9));
+        } else return null;
+
+        return jobInfo;
     }
 
-    public void addJobListing(String employer_id, String business_name, String logo_url, String job_description, String business_number, String location, String job_category, String min_age, String max_age) {
+    public void addJobListing(int employer_id, String business_name, String logo_url, String job_description, String business_number, String location, String job_category, String min_age, String max_age) {
         Log.d("addJobListing", business_name);
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -334,7 +352,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
         // 5. return user
     }
 
-    // Get All users
     public List<User> getAllUsers() {
         List<User> users = new LinkedList<User>();
 

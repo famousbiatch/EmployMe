@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JobList extends AppCompatActivity {
 
@@ -101,16 +102,18 @@ public class JobList extends AppCompatActivity {
 
     public void setListData()
     {
-        for (int i = 0; i < 3; i++) {
+        for (int jobID : SQLiteDB.getInstance().getAllJobs())
+        {
+            final JobCard entry = new JobCard();
+            List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
 
-            final JobCard sched = new JobCard();
+            entry.setLogo(info.get(2));
+            entry.setBusinessName(info.get(1));
+            entry.setJobCategory(info.get(6));
 
-            sched.setBusinessName("McDonald's "+ i);
-            sched.setLogo("Logo " + i);
-            sched.setJobCategory("Chef " + i);
-
-            CustomListViewValuesArr.add(sched);
+            CustomListViewValuesArr.add(entry);
         }
+        //another loop here to add ALL other jobs that don't match city
     }
 
     public void onItemClick(int mPosition)
