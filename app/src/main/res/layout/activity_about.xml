@@ -7,4 +7,33 @@
     android:layout_height="match_parent"
     tools:context="com.employme.employme.AboutActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="EmployMe(C) LLC is a private hi-tech company headquartered in 7aret el room, Nazareth, Israel.\n\nFor business inquiries, visit our el 7ara el sharqeye branch located near some mosque. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApp developers: Darran Fahoum\n\nFunded by: Ali Sallam\n\n(C) EmployMe Corp. LLC, all rights reserved."
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="229dp"
+        android:layout_height="106dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/employme_banner"
+        tools:layout_editor_absoluteY="14dp" />
 </android.support.constraint.ConstraintLayout>

@@ -43,7 +43,8 @@ public class SignupActivity extends AppCompatActivity {
                 etSignupEmail.getText().toString().equals("") ||
                 etSignupPassword.getText().toString().equals("") ||
                 SQLiteDB.getInstance().getUser(etSignupEmail.getText().toString()) != null ||
-                etSignupEmail.getText().toString().contains(" "))
+                etSignupEmail.getText().toString().contains(" ") ||
+                !etSignupEmail.getText().toString().contains("@"))
         {
             Toast.makeText(this, "Check your input", Toast.LENGTH_LONG).show();
             return;
