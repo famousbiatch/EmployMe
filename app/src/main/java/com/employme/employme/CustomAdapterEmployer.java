@@ -1,14 +1,8 @@
 package com.employme.employme;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +11,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class CustomAdapter extends BaseAdapter implements OnClickListener {
+import java.util.ArrayList;
+
+public class CustomAdapterEmployer extends BaseAdapter implements OnClickListener {
 
     private Activity activity;
     private ArrayList data;
@@ -29,13 +24,13 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
     int i = 0;
 
 
-    public CustomAdapter(Activity a, ArrayList d, Resources resLocal) {
+    public CustomAdapterEmployer(Activity a, ArrayList d, Resources resLocal) {
 
         activity = a;
         data = d;
         res = resLocal;
 
-        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -120,7 +115,7 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
         public void onClick(View arg0) {
 
 
-            JobList sct = (JobList) activity;
+            EmployerDashboardActivity sct = (EmployerDashboardActivity) activity;
 
             sct.onItemClick(mPosition);
         }

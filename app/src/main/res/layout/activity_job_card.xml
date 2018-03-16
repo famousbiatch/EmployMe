@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="62dp"
-        android:layout_height="63dp"
+        android:layout_height="62dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/mcdlogotest" />
+        app:srcCompat="@drawable/ic_info_black_24dp" />
 
     <TextView
         android:id="@+id/tvBusinessName"
@@ -46,6 +46,7 @@
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="0.29"
         android:text="Job Category"
         android:textColor="@android:color/black"

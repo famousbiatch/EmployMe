@@ -17,7 +17,7 @@ import java.util.List;
 public class EmployerDashboardActivity extends AppCompatActivity {
 
     ListView list;
-    CustomAdapter adapter;
+    CustomAdapterEmployer adapter;
     public EmployerDashboardActivity CustomListView = null;
     public ArrayList<JobCard> CustomListViewValuesArr = new ArrayList<JobCard>();
 
@@ -35,7 +35,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
         Resources res = getResources();
         list = (ListView) findViewById(R.id.lstMyJobs);
 
-        adapter = new CustomAdapter(CustomListView, CustomListViewValuesArr, res);
+        adapter = new CustomAdapterEmployer(CustomListView, CustomListViewValuesArr, res);
         list.setAdapter(adapter);
     }
 
@@ -45,7 +45,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
             final JobCard entry = new JobCard();
             List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
 
-            if (!info.get(0).equals(SQLiteDB.getInstance().getSessionUser()))
+            if (!info.get(1).equals(SQLiteDB.getInstance().getSessionUser()))
                 continue;
 
             entry.setId(Integer.valueOf(info.get(0)));

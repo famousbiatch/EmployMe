@@ -36,9 +36,7 @@ public class CreateJobActivity extends AppCompatActivity {
                 (!etBusinessNumber.getText().toString().startsWith("05")) &&
                 (!etBusinessNumber.getText().toString().startsWith("04")) &&
                 (!etBusinessNumber.getText().toString().startsWith("6"))) ||
-                etBusinessLocation.getText().toString().length() < 2 ||
-                etMinAge.getText().toString().length() < 1 ||
-                etMaxAge.getText().toString().length() < 1)
+                etBusinessLocation.getText().toString().length() < 2)
         {
             Toast.makeText(this, "Check your input", Toast.LENGTH_LONG).show();
             return;
