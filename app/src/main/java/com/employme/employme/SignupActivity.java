@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.employme.employme.R;
@@ -19,6 +21,12 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etSignupPassword;
     private EditText etSignupConfirmPassword;
     private Button btnSignup;
+    private Spinner spSignupCity;
+    private EditText etPictureURL;
+    private EditText etAge;
+    private EditText etEducation;
+    private Switch swDriverLicense;
+    private EditText etPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,12 @@ public class SignupActivity extends AppCompatActivity {
         etSignupPassword = (EditText) findViewById(R.id.etSignupPassword);
         etSignupConfirmPassword = (EditText) findViewById(R.id.etSignupConfirmPassword);
         btnSignup = (Button) findViewById(R.id.btnSignup);
+        spSignupCity = (Spinner) findViewById(R.id.spSignupCity);
+        etPictureURL = (EditText) findViewById(R.id.etSignupPictureURL);
+        etAge = (EditText) findViewById(R.id.etSignupAge);
+        etEducation = (EditText) findViewById(R.id.etSignupEducation);
+        swDriverLicense = (Switch) findViewById(R.id.swDriverLicense);
+        etPhoneNumber = (EditText) findViewById(R.id.etSignupPhoneNumber);
     }
 
     public void registerAccount(View view) {
@@ -50,10 +64,16 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        User user = new User(
-                etSignupFullName.getText().toString(),
-                etSignupEmail.getText().toString().toLowerCase(),
-                etSignupPassword.getText().toString());
+        User user = new User();
+        user.setName(etSignupFullName.getText().toString());
+        user.setEmail(etSignupEmail.getText().toString().toLowerCase());
+        user.setPassword(etSignupPassword.getText().toString());
+        user.setCity(spSignupCity.getSelectedItem().toString());
+        user.setPictureUrl(etPictureURL.getText().toString());
+        user.setAge(Integer.valueOf(etAge.getText().toString()));
+        user.setEducation(etEducation.getText().toString());
+        user.setDriverLicense((swDriverLicense.isChecked()) ? 1 : 0);
+        user.setPhoneNumber(etPhoneNumber.getText().toString());
 
         SQLiteDB.getInstance().addUser(user);
         SQLiteDB.getInstance().updateSession(Integer.toString(SQLiteDB.getInstance().getUser(etSignupEmail.getText().toString()).getId()));

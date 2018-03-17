@@ -277,7 +277,13 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, "+
                 "email TEXT, "+
-                "password TEXT )";
+                "password TEXT, " +
+                "city TEXT, " +
+                "picture_url TEXT, " +
+                "age INTEGER, " +
+                "education TEXT, " +
+                "driver_license INTEGER, " +
+                "phone_number TEXT )";
 
         String CREATE_JOBS_TABLE = "CREATE TABLE joblisting ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -322,8 +328,14 @@ public class SQLiteDB extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_CITY = "city";
+    private static final String KEY_PICTURE_URL = "picture_url";
+    private static final String KEY_AGE = "age";
+    private static final String KEY_EDUCATION = "education";
+    private static final String KEY_DRIVER_LICENSE = "driver_license";
+    private static final String KEY_PHONE_NUMBER = "phone_number";
 
-    private static final String[] USER_COLUMNS = {KEY_ID,KEY_NAME,KEY_EMAIL,KEY_PASSWORD};
+    private static final String[] USER_COLUMNS = {KEY_ID, KEY_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_CITY, KEY_PICTURE_URL, KEY_AGE, KEY_EDUCATION, KEY_DRIVER_LICENSE, KEY_PHONE_NUMBER};
 
     public void addUser(User user){
         Log.d("addUser", user.toString());
@@ -335,6 +347,12 @@ public class SQLiteDB extends SQLiteOpenHelper {
         values.put(KEY_NAME, user.getName()); // get title
         values.put(KEY_EMAIL, user.getEmail()); // get title
         values.put(KEY_PASSWORD, user.getPassword()); // get title
+        values.put(KEY_CITY, user.getCity());
+        values.put(KEY_PICTURE_URL, user.getPictureUrl());
+        values.put(KEY_AGE, user.getAge());
+        values.put(KEY_EDUCATION, user.getEducation());
+        values.put(KEY_DRIVER_LICENSE, user.getDriverLicense());
+        values.put(KEY_PHONE_NUMBER, user.getPhoneNumber());
 
         // 3. insert
         db.insert(TABLE_USER, // table
@@ -371,6 +389,12 @@ public class SQLiteDB extends SQLiteOpenHelper {
         user.setName(cursor.getString(1));
         user.setEmail(cursor.getString(2));
         user.setPassword(cursor.getString(3));
+        user.setCity(cursor.getString(4));
+        user.setPictureUrl(cursor.getString(5));
+        user.setAge(Integer.valueOf(cursor.getString(6)));
+        user.setEducation(cursor.getString(7));
+        user.setDriverLicense(Integer.valueOf(cursor.getString(8)));
+        user.setPhoneNumber(cursor.getString(9));
 
         Log.d("getUser(" + id + ")", user.toString());
 
@@ -406,6 +430,12 @@ public class SQLiteDB extends SQLiteOpenHelper {
             user.setName(cursor.getString(1));
             user.setEmail(cursor.getString(2));
             user.setPassword(cursor.getString(3));
+            user.setCity(cursor.getString(4));
+            user.setPictureUrl(cursor.getString(5));
+            user.setAge(Integer.valueOf(cursor.getString(6)));
+            user.setEducation(cursor.getString(7));
+            user.setDriverLicense(Integer.valueOf(cursor.getString(8)));
+            user.setPhoneNumber(cursor.getString(9));
             Log.d("getUser(" + email + ")", user.toString());
             return user;
         }
@@ -413,7 +443,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
             Log.d("getUser(" + email + ")", "null");
             return null;
         }
-        // 5. return user
     }
 
     public List<User> getAllUsers() {
@@ -435,6 +464,12 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 user.setName(cursor.getString(1));
                 user.setEmail(cursor.getString(2));
                 user.setPassword(cursor.getString(3));
+                user.setCity(cursor.getString(4));
+                user.setPictureUrl(cursor.getString(5));
+                user.setAge(Integer.valueOf(cursor.getString(6)));
+                user.setEducation(cursor.getString(7));
+                user.setDriverLicense(Integer.valueOf(cursor.getString(8)));
+                user.setPhoneNumber(cursor.getString(9));
 
                 // Add user to users
                 users.add(user);
@@ -458,11 +493,17 @@ public class SQLiteDB extends SQLiteOpenHelper {
         values.put("name", user.getName()); // get title
         values.put("email", user.getEmail()); // get author
         values.put("password", user.getPassword());
+        values.put("city", user.getCity());
+        values.put("picture_url", user.getPictureUrl());
+        values.put("age", user.getAge());
+        values.put("education", user.getEducation());
+        values.put("driver_license", user.getDriverLicense());
+        values.put("phone_number", user.getPhoneNumber());
 
         // 3. updating row
         int i = db.update(TABLE_USER, //table
                 values, // column/value
-                KEY_ID+" = ?", // selections
+                KEY_ID + " = ?", // selections
                 new String[] { String.valueOf(user.getId()) }); //selection args
 
         // 4. close

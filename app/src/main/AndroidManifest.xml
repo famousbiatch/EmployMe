@@ -44,6 +44,7 @@
         <activity
             android:name=".ChangePasswordActivity"
             android:configChanges="orientation"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CreateJobActivity"

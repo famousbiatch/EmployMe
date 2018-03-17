@@ -84,4 +84,16 @@
         <item>Janitor</item>
         <item>Nurse</item>
     </string-array>
+
+    <string-array name="job_filter">
+        <item>Job Filter</item>
+        <item>Test1</item>
+        <item>Test2</item>
+    </string-array>
+
+    <string-array name="city_list">
+        <item>Nazareth</item>
+        <item>Haifa</item>
+        <item>Tel Aviv</item>
+    </string-array>
 </resources>

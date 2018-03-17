@@ -7,12 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView ivProfilePicture;
-    TextView tvFullName;
-    TextView tvEmail;
-    TextView tvPassword;
+    private ImageView ivProfilePicture;
+    private TextView tvFullName;
+    private TextView tvEmail;
+    private TextView tvPassword;
+    private TextView tvPhoneNumber;
+    private TextView tvCity;
+    private TextView tvAge;
+    private TextView tvEducation;
+    private TextView tvDriverLicense;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,11 @@ public class ProfileActivity extends AppCompatActivity {
         tvFullName = (TextView) findViewById(R.id.tvFullName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
         tvPassword = (TextView) findViewById(R.id.tvPassword);
+        tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
+        tvCity = (TextView) findViewById(R.id.tvCity);
+        tvAge =  (TextView) findViewById(R.id.tvAge);
+        tvEducation = (TextView) findViewById(R.id.tvEducation);
+        tvDriverLicense = (TextView) findViewById(R.id.tvDriverLicense);
 
         User loggedInUser = SQLiteDB.getInstance().getUser(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()));
         tvFullName.setText(loggedInUser.getName());
@@ -32,6 +44,11 @@ public class ProfileActivity extends AppCompatActivity {
         for (int i = 1; i < starLength; i++)
             starredPass += "*";
         tvPassword.setText(starredPass);
+        tvPhoneNumber.setText(loggedInUser.getPhoneNumber());
+        tvCity.setText(loggedInUser.getCity());
+        tvAge.setText(String.valueOf(loggedInUser.getAge()));
+        tvEducation.setText(loggedInUser.getEducation());
+        tvDriverLicense.setText((loggedInUser.getDriverLicense() == 1) ? "Driver's License Available" : "No Driver's License");
     }
 
     @Override
