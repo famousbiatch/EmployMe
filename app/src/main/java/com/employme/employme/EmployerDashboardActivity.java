@@ -43,7 +43,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
         for (int jobID : SQLiteDB.getInstance().getAllJobs())
         {
             final JobCard entry = new JobCard();
-            List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
+            List<String> info = SQLiteDB.getInstance().getJobListing(jobID);
 
             if (!info.get(1).equals(SQLiteDB.getInstance().getSessionUser()))
                 continue;
@@ -63,6 +63,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, JobPageActivity.class);
         i.putExtra("job_id", tempValues.getId());
+        i.putExtra("intentName", "EmployerDashboard");
         startActivity(i);
     }
 
@@ -77,6 +78,12 @@ public class EmployerDashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
+            case R.id.refreshSecond:
+            {
+                setListData();
+                Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
+                break;
+            }
             case R.id.favoritesSECOND:
             {
                 Intent i = new Intent(this, FavoritesActivity.class);
@@ -92,24 +99,28 @@ public class EmployerDashboardActivity extends AppCompatActivity {
             case R.id.profileSECOND:
             {
                 Intent i = new Intent(this, ProfileActivity.class);
+                i.putExtra("intentName", "EmployerDashboard");
                 startActivity(i);
                 break;
             }
             case R.id.settingsSECOND:
             {
                 Intent i = new Intent(this, SettingsActivity.class);
+                i.putExtra("intentName", "EmployerDashboard");
                 startActivity(i);
                 break;
             }
             case R.id.createJobSECOND:
             {
                 Intent i = new Intent(this, CreateJobActivity.class);
+                i.putExtra("intentName", "EmployerDashboard");
                 startActivity(i);
                 break;
             }
             case R.id.aboutSECOND:
             {
                 Intent i = new Intent(this, AboutActivity.class);
+                i.putExtra("intentName", "EmployerDashboard");
                 startActivity(i);
                 break;
             }

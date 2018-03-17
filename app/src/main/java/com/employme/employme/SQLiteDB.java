@@ -14,6 +14,62 @@ import android.util.Log;
 public class SQLiteDB extends SQLiteOpenHelper {
 
     ///////////////////////////////////////////////////////////
+    private static final String TABLE_FAVORITES = "favorites";
+
+    private static final String KEY_FAV_ID = "id";
+    private static final String KEY_USER_ID = "user_id";
+    private static final String KEY_FAV_JOB_ID = "job_id";
+
+    private static final String[] FAVORITES_COLUMNS = {KEY_FAV_ID, KEY_USER_ID, KEY_FAV_JOB_ID};
+
+    public boolean isFavorite(int user_id, int job_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor =
+                db.query(TABLE_FAVORITES, // a. table
+                        FAVORITES_COLUMNS, // b. column names
+                        " user_id = ? AND job_id = ?", // c. selections
+                        new String[] { String.valueOf(user_id), String.valueOf(job_id) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        if (cursor.getCount() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void addFavorite(int user_id, int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_ID, user_id);
+        values.put(KEY_FAV_JOB_ID, job_id);
+
+        db.insert(TABLE_FAVORITES, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        db.close();
+    }
+
+    public void deleteFavorite(int user_id, int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_FAVORITES,
+                KEY_USER_ID + " = ? AND " + KEY_FAV_JOB_ID + " = ?",
+                new String[] { String.valueOf(user_id), String.valueOf(job_id) });
+
+        db.close();
+    }
+    ///////////////////////////////////////////////////////////
     private static final String TABLE_SESSION = "session";
 
     private static final String KEY_SESSION_ID = "id";
@@ -212,7 +268,11 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // SQL statement to create user table
+        String CREATE_FAVORITES_TABLE = "CREATE TABLE favorites ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id INTEGER, " +
+                "job_id INTEGER )";
+
         String CREATE_USER_TABLE = "CREATE TABLE user ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, "+
@@ -236,6 +296,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 "user_id TEXT )";
 
         //Create the tables
+        db.execSQL(CREATE_FAVORITES_TABLE);
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_JOBS_TABLE);
         db.execSQL(CREATE_SESSION_TABLE);
@@ -244,6 +305,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older users table if existed
+        db.execSQL("DROP TABLE IF EXISTS favorites");
         db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS joblisting");
         db.execSQL("DROP TABLE IF EXISTS session");
@@ -418,7 +480,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
         // 2. delete
         db.delete(TABLE_USER,
-                KEY_ID+" = ?",
+                KEY_ID + " = ?",
                 new String[] { String.valueOf(user.getId()) });
 
         // 3. close

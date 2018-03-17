@@ -251,4 +251,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getStringExtra("intentName").equals("JobList"))
+            startActivity(new Intent(this, JobList.class));
+        else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
+            startActivity(new Intent(this, EmployerDashboardActivity.class));
+        else if (getIntent().getStringExtra("intentName").equals("Favorites"))
+            startActivity(new Intent(this, FavoritesActivity.class));
+
+        super.onBackPressed();
+    }
 }

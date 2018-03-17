@@ -1,5 +1,6 @@
 package com.employme.employme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -31,5 +32,17 @@ public class ProfileActivity extends AppCompatActivity {
         for (int i = 1; i < starLength; i++)
             starredPass += "*";
         tvPassword.setText(starredPass);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getStringExtra("intentName").equals("JobList"))
+            startActivity(new Intent(this, JobList.class));
+        else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
+            startActivity(new Intent(this, EmployerDashboardActivity.class));
+        else if (getIntent().getStringExtra("intentName").equals("Favorites"))
+            startActivity(new Intent(this, FavoritesActivity.class));
+
+        super.onBackPressed();
     }
 }

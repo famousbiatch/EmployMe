@@ -68,6 +68,7 @@ public class JobList extends AppCompatActivity {
 
         Intent i = new Intent(this, JobPageActivity.class);
         i.putExtra("job_id", tempValues.getId());
+        i.putExtra("intentName", "JobList");
         startActivity(i);
     }
 
@@ -82,6 +83,12 @@ public class JobList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
+            case R.id.refresh:
+            {
+                setListData();
+                Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
+                break;
+            }
             case R.id.favorites:
             {
                 Intent i = new Intent(this, FavoritesActivity.class);
@@ -97,24 +104,28 @@ public class JobList extends AppCompatActivity {
             case R.id.profile:
             {
                 Intent i = new Intent(this, ProfileActivity.class);
+                i.putExtra("intentName", "JobList");
                 startActivity(i);
                 break;
             }
             case R.id.settings:
             {
                 Intent i = new Intent(this, SettingsActivity.class);
+                i.putExtra("intentName", "JobList");
                 startActivity(i);
                 break;
             }
             case R.id.createJob:
             {
                 Intent i = new Intent(this, CreateJobActivity.class);
+                i.putExtra("intentName", "JobList");
                 startActivity(i);
                 break;
             }
             case R.id.about:
             {
                 Intent i = new Intent(this, AboutActivity.class);
+                i.putExtra("intentName", "JobList");
                 startActivity(i);
                 break;
             }

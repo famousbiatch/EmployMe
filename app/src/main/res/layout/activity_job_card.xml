@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_info_black_24dp" />
+        app:srcCompat="@drawable/ic_refresh" />
 
     <TextView
         android:id="@+id/tvBusinessName"
@@ -31,7 +31,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="0.11"
-        android:text="Business name"
+        android:text="Empty"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +48,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_weight="0.29"
-        android:text="Job Category"
         android:textColor="@android:color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
