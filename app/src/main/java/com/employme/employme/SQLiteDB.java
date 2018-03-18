@@ -529,4 +529,22 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
         Log.d("deleteUser", user.toString());
     }
+
+    public boolean hasJobs(int user_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor =
+                db.query(TABLE_JOBS, // a. table
+                        JOBLISTING_COLUMNS, // b. column names
+                        " employer_id = ?", // c. selections
+                        new String[] { String.valueOf(user_id) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        if (cursor != null)
+            return true;
+        return false;
+    }
 }

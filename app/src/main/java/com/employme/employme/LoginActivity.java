@@ -34,8 +34,13 @@ public class LoginActivity extends AppCompatActivity {
         if (!SQLiteDB.getInstance().getSessionUser().equals("")) //IF USER HAS 1 OR MORE LISTED JOBS TAKE TO EMPLOYER DASHBOARD *************************
         {
             //SEND TO EMPLOYER DASHBOARD IF USER HAS ANY LISTED JOBS
-            Intent i = new Intent(this, JobList.class);
-            startActivity(i);
+            if (SQLiteDB.getInstance().hasJobs(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()))) {
+                Intent i = new Intent(this, EmployerDashboardActivity.class);
+                startActivity(i);
+            } else {
+                Intent i = new Intent(this, JobList.class);
+                startActivity(i);
+            }
         }
     }
 
