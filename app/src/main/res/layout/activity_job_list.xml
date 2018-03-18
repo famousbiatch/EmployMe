@@ -20,9 +20,9 @@
         android:id="@+id/spJobFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/job_filter"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/actionbar"
+        android:entries="@array/job_filter"
         android:spinnerMode="dialog" />
 
 </RelativeLayout>

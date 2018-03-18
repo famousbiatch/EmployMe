@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goToRegister(View view) {
         Intent intent = new Intent(this, SignupActivity.class);
+        intent.putExtra("intentName", "Login");
         startActivity(intent);
     }
 

@@ -84,4 +84,12 @@ public class SignupActivity extends AppCompatActivity {
     public void clearFocus(View view) {
         view.requestFocus();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getStringExtra("intentName").equals("Login"))
+            startActivity(new Intent(this, LoginActivity.class));
+
+        super.onBackPressed();
+    }
 }

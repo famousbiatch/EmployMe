@@ -5,4 +5,5 @@
     <color name="colorAccent">#7A93AC</color>
     <color name="actionBar">#ececec</color>
     <color name="clickable">#5f81de</color>
+    <color name="filter">#eaeaea</color>
 </resources>
