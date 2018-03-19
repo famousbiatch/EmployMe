@@ -6,24 +6,117 @@
     android:layout_height="match_parent"
     tools:context="com.employme.employme.JobPageActivity">
 
-    <include
-        android:id="@+id/actionbarJob"
-        layout="@layout/action_bar" />
+    <TextView
+        android:id="@+id/tvBusinessLocation"
+        android:layout_width="332dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.29"
+        android:text="No data"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
+        app:layout_constraintVertical_bias="0.108" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvAgeRange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Full Job Design goes here"
+        android:layout_marginTop="8dp"
+        android:text="00-00"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintVertical_bias="0.302" />
+
+    <ImageView
+        android:id="@+id/imgLogoFull"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.006"
+        app:srcCompat="@drawable/ic_refresh" />
+
+    <TextView
+        android:id="@+id/tvBusinessNameFull"
+        android:layout_width="186dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.11"
+        android:text="Empty"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <TextView
+        android:id="@+id/tvJobCategoryFull"
+        android:layout_width="147dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="412dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.29"
+        android:text="No data"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
+        android:id="@+id/tvJobDescription"
+        android:layout_width="332dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="296dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.29"
+        android:text="No data"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobCategoryFull"
+        app:layout_constraintVertical_bias="0.126" />
+
+    <include
+        android:id="@+id/actionbarJob"
+        layout="@layout/action_bar" />
 
     <ImageView
         android:id="@+id/ivFavorite"
@@ -36,10 +129,88 @@
         android:onClick="favoriteClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_star_empty" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Age:"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.302" />
+
+    <ImageView
+        android:id="@+id/ivPhoneIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
+        app:layout_constraintVertical_bias="0.015"
+        app:srcCompat="@drawable/ic_phone" />
+
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="99dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0000000000"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
+        app:layout_constraintVertical_bias="0.015" />
+
+    <Button
+        android:id="@+id/btnApplyForJob"
+        android:layout_width="244dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/actionBar"
+        android:text="APPLY FOR POSITION"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.982" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="382dp"
+        android:layout_height="218dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnApplyForJob"
+        app:layout_constraintTop_toBottomOf="@+id/tvBusinessLocation"
+        app:srcCompat="@drawable/iv_location"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>

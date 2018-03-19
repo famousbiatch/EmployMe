@@ -163,16 +163,16 @@ public class SQLiteDB extends SQLiteOpenHelper {
     ///////////////////////////////////////////////////////////
     private static final String TABLE_JOBS = "joblisting";
 
-    private static final String KEY_JOB_ID = "id";
-    private static final String KEY_EMPLOYER_ID = "employer_id";
-    private static final String KEY_BUSINESS_NAME = "business_name";
-    private static final String KEY_LOGO_URL = "logo_url";
-    private static final String KEY_JOB_DESCRIPTION = "job_description";
-    private static final String KEY_BUSINESS_NUMBER = "business_number";
-    private static final String KEY_LOCATION = "location";
-    private static final String KEY_JOB_CATEGORY = "job_category";
-    private static final String KEY_MIN_AGE = "min_age";
-    private static final String KEY_MAX_AGE = "max_age";
+    private static final String KEY_JOB_ID = "id"; //0
+    private static final String KEY_EMPLOYER_ID = "employer_id"; // 1
+    private static final String KEY_BUSINESS_NAME = "business_name"; // 2
+    private static final String KEY_LOGO_URL = "logo_url"; // 3
+    private static final String KEY_JOB_DESCRIPTION = "job_description"; // 4
+    private static final String KEY_BUSINESS_NUMBER = "business_number"; // 5
+    private static final String KEY_LOCATION = "location"; // 6
+    private static final String KEY_JOB_CATEGORY = "job_category"; // 7
+    private static final String KEY_MIN_AGE = "min_age"; // 8
+    private static final String KEY_MAX_AGE = "max_age"; // 9
 
     private static final String[] JOBLISTING_COLUMNS = {KEY_JOB_ID, KEY_EMPLOYER_ID, KEY_BUSINESS_NAME, KEY_LOGO_URL, KEY_JOB_DESCRIPTION, KEY_BUSINESS_NUMBER, KEY_LOCATION, KEY_JOB_CATEGORY, KEY_MIN_AGE, KEY_MAX_AGE};
 
