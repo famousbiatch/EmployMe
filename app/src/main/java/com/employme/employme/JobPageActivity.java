@@ -24,7 +24,6 @@ public class JobPageActivity extends AppCompatActivity {
     private TextView tvAgeRange;
     private TextView tvPhoneNumber;
     private TextView tvBusinessLocation;
-    private ImageView ivBusinessLocation;
     private Button btnApplyForJob;
 
     @Override
@@ -42,7 +41,6 @@ public class JobPageActivity extends AppCompatActivity {
         tvAgeRange = (TextView) findViewById(R.id.tvAgeRange);
         tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
         tvBusinessLocation = (TextView) findViewById(R.id.tvBusinessLocation);
-        ivBusinessLocation = (ImageView) findViewById(R.id.ivLocation);
         btnApplyForJob = (Button) findViewById(R.id.btnApplyForJob);
 
         this.job_id = getIntent().getIntExtra("job_id", 0);

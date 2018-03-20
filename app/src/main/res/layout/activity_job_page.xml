@@ -23,8 +23,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/tvAgeRange"
@@ -38,10 +38,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.289" />
 
     <ImageView
         android:id="@+id/imgLogoFull"
@@ -53,7 +53,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
         app:layout_constraintVertical_bias="0.006"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/tvBusinessNameFull"
         android:layout_width="186dp"
-        android:layout_height="19dp"
+        android:layout_height="23dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -81,7 +81,7 @@
         android:id="@+id/tvJobCategoryFull"
         android:layout_width="147dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="412dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -91,10 +91,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/tvJobDescription"
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvJobCategoryFull"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <include
         android:id="@+id/actionbarJob"
@@ -124,14 +124,14 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="348dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="8dp"
         android:onClick="favoriteClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_star_empty" />
 
@@ -147,10 +147,10 @@
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.289" />
 
     <ImageView
         android:id="@+id/ivPhoneIcon"
@@ -162,16 +162,16 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintHorizontal_bias="0.658"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
-        app:layout_constraintVertical_bias="0.015"
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.293"
         app:srcCompat="@drawable/ic_phone" />
 
     <TextView
         android:id="@+id/tvPhoneNumber"
         android:layout_width="99dp"
-        android:layout_height="28dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -181,10 +181,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvJobDescription"
-        app:layout_constraintVertical_bias="0.015" />
+        app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
+        app:layout_constraintVertical_bias="0.29" />
 
     <Button
         android:id="@+id/btnApplyForJob"
@@ -201,16 +201,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionbarJob"
         app:layout_constraintVertical_bias="0.982" />
-
-    <ImageView
-        android:id="@+id/ivLocation"
-        android:layout_width="382dp"
-        android:layout_height="218dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnApplyForJob"
-        app:layout_constraintTop_toBottomOf="@+id/tvBusinessLocation"
-        app:srcCompat="@drawable/iv_location"
-        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
