@@ -176,6 +176,16 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     private static final String[] JOBLISTING_COLUMNS = {KEY_JOB_ID, KEY_EMPLOYER_ID, KEY_BUSINESS_NAME, KEY_LOGO_URL, KEY_JOB_DESCRIPTION, KEY_BUSINESS_NUMBER, KEY_LOCATION, KEY_JOB_CATEGORY, KEY_MIN_AGE, KEY_MAX_AGE};
 
+    public void deleteJob(int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_JOBS,
+                KEY_JOB_ID + " = ?",
+                new String[] { String.valueOf(job_id) });
+
+        db.close();
+    }
+
     public List<Integer> getAllJobs() {
         List<Integer> jobs = new LinkedList<Integer>();
 

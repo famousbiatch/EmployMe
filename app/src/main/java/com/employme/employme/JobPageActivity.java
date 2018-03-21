@@ -25,6 +25,7 @@ public class JobPageActivity extends AppCompatActivity {
     private TextView tvPhoneNumber;
     private TextView tvBusinessLocation;
     private Button btnApplyForJob;
+    private Button btnDeleteJob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,13 @@ public class JobPageActivity extends AppCompatActivity {
         tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
         tvBusinessLocation = (TextView) findViewById(R.id.tvBusinessLocation);
         btnApplyForJob = (Button) findViewById(R.id.btnApplyForJob);
+        btnDeleteJob = (Button) findViewById(R.id.btnDeleteJob);
 
         this.job_id = getIntent().getIntExtra("job_id", 0);
         List<String> info = SQLiteDB.getInstance().getJobListing(job_id);
+
+        if (!info.get(1).equals(SQLiteDB.getInstance().getSessionUser()))
+            btnDeleteJob.setVisibility(View.INVISIBLE);
 
         fav = false;
         if (SQLiteDB.getInstance().isFavorite(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), job_id)) {
@@ -86,5 +91,17 @@ public class JobPageActivity extends AppCompatActivity {
         } catch (Exception x) {}
 
         super.onBackPressed();
+    }
+
+    public void deleteJob(View view) {
+        SQLiteDB.getInstance().deleteJob(job_id);
+        try {
+            if (getIntent().getStringExtra("intentName").equals("JobList"))
+                startActivity(new Intent(this, JobList.class));
+            else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
+                startActivity(new Intent(this, EmployerDashboardActivity.class));
+            else if (getIntent().getStringExtra("intentName").equals("Favorites"))
+                startActivity(new Intent(this, FavoritesActivity.class));
+        } catch (Exception x) {}
     }
 }
