@@ -26,6 +26,7 @@ public class JobPageActivity extends AppCompatActivity {
     private TextView tvBusinessLocation;
     private Button btnApplyForJob;
     private Button btnDeleteJob;
+    private int numberOfApps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,13 @@ public class JobPageActivity extends AppCompatActivity {
 
         this.job_id = getIntent().getIntExtra("job_id", 0);
         List<String> info = SQLiteDB.getInstance().getJobListing(job_id);
+        this.numberOfApps = SQLiteDB.getInstance().getNumberOfApplications(job_id);
 
         if (!info.get(1).equals(SQLiteDB.getInstance().getSessionUser()))
             btnDeleteJob.setVisibility(View.INVISIBLE);
+        else {
+            btnApplyForJob.setText("VIEW APPLICATIONS (" + numberOfApps + ")");
+        }
 
         fav = false;
         if (SQLiteDB.getInstance().isFavorite(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), job_id)) {
@@ -63,9 +68,19 @@ public class JobPageActivity extends AppCompatActivity {
         tvAgeRange.setText(info.get(8) + "-" + info.get(9));
         tvPhoneNumber.setText(info.get(5));
         tvBusinessLocation.setText(info.get(6));
-        //set data in location view
     }
 
+
+    public void applyOrViewApps(View view) {
+        if (btnApplyForJob.getText().toString().startsWith("VIEW APPLICATIONS")) {
+            Intent i = new Intent(this, ApplicationListActivity.class);
+            i.putExtra("job_id", this.job_id);
+            startActivity(i);
+            return;
+        }
+        //IF ALREADY APPLIED, DONT ALLOW (RETURN)
+        SQLiteDB.getInstance().createApplication(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), this.job_id);
+    }
 
     public void favoriteClick(View view) {
         if (!fav) {

@@ -12,7 +12,70 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class SQLiteDB extends SQLiteOpenHelper {
+    ///////////////////////////////////////////////////////////
+    private static final String TABLE_APPLICATIONS = "applications";
 
+    private static final String KEY_APP_ID = "id";
+    private static final String KEY_APPLICANT_ID = "applicant_id";
+    private static final String KEY_JOB_ID_APP = "job_id";
+
+    private static final String[] APPLICATIONS_COLUMNS = {KEY_APP_ID, KEY_APPLICANT_ID, KEY_JOB_ID_APP};
+
+    public void createApplication(int applicant_id, int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_APPLICANT_ID, applicant_id); // get title
+        values.put(KEY_JOB_ID_APP, job_id); // get title
+
+        db.insert(TABLE_APPLICATIONS, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        db.close();
+    }
+
+    public List<Integer> getAllApplications(int job_id) {
+        List<Integer> users = new LinkedList<Integer>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_APPLICATIONS,
+                APPLICATIONS_COLUMNS,
+                "job_id = ?",
+                new String[] { String.valueOf(job_id)},
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                users.add(cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+        return users;
+    }
+
+    public int getNumberOfApplications(int job_id) {
+        int number = 0;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_APPLICATIONS,
+                APPLICATIONS_COLUMNS,
+                "job_id = ?",
+                new String[] { String.valueOf(job_id) },
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                number++;
+            } while (cursor.moveToNext());
+        }
+        return number;
+    }
     ///////////////////////////////////////////////////////////
     private static final String TABLE_FAVORITES = "favorites";
 
@@ -278,6 +341,11 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String CREATE_APPLICATIONS_TABLE = "CREATE TABLE applications ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "applicant_id INTEGER, " +
+                "job_id INTEGER )";
+
         String CREATE_FAVORITES_TABLE = "CREATE TABLE favorites ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "user_id INTEGER, " +
@@ -312,6 +380,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 "user_id TEXT )";
 
         //Create the tables
+        db.execSQL(CREATE_APPLICATIONS_TABLE);
         db.execSQL(CREATE_FAVORITES_TABLE);
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_JOBS_TABLE);
@@ -321,6 +390,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older users table if existed
+        db.execSQL("DROP TABLE IF EXISTS applications");
         db.execSQL("DROP TABLE IF EXISTS favorites");
         db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS joblisting");

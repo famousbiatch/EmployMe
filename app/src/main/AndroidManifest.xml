@@ -34,8 +34,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".JobList"
-            android:noHistory="true"
             android:configChanges="orientation"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ForgotPasswordActivity"
@@ -51,26 +51,32 @@
             android:noHistory="true" />
         <activity
             android:name=".SettingsActivity"
+            android:configChanges="orientation"
             android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".ProfileActivity"
+        <activity
+            android:name=".AboutActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".AboutActivity"
+        <activity
+            android:name=".EmployerDashboardActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity android:name=".EmployerDashboardActivity"
             android:noHistory="true"
-            android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".FavoritesActivity"
+        <activity
+            android:name=".FavoritesActivity"
+            android:configChanges="orientation"
             android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JobPageActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".JobPageActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ApplicationListActivity"></activity>
     </application>
 
 </manifest>
