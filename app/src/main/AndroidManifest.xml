@@ -29,10 +29,6 @@
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".JobCard"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".JobList"
             android:configChanges="orientation"
             android:noHistory="true"
@@ -76,7 +72,14 @@
             android:name=".JobPageActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".ApplicationListActivity"></activity>
+        <activity
+            android:name=".ApplicationListActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MyApplicationsActivity"
+            android:configChanges="orientation"
+            android:noHistory="true"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

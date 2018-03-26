@@ -55,7 +55,6 @@ public class FavoritesActivity extends AppCompatActivity {
 
             CustomListViewValuesArr.add(entry);
         }
-        //another loop here to add ALL other jobs that don't match city
     }
 
     public void onItemClick(int mPosition) {
@@ -102,6 +101,12 @@ public class FavoritesActivity extends AppCompatActivity {
                 i.putExtra("intentName", "Favorites");
                 startActivity(i);
                 break;
+            }
+            case R.id.myAppsTHIRD:
+            {
+                Intent i = new Intent(this, MyApplicationsActivity.class);
+                i.putExtra("intentName", "Favorites");
+                startActivity(i);
             }
             case R.id.settingsTHIRD:
             {

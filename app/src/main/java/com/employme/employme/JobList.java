@@ -108,6 +108,13 @@ public class JobList extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
+            case R.id.myAppsFIRST:
+            {
+                Intent i = new Intent(this, MyApplicationsActivity.class);
+                i.putExtra("intentName", "JobList");
+                startActivity(i);
+                break;
+            }
             case R.id.settings:
             {
                 Intent i = new Intent(this, SettingsActivity.class);

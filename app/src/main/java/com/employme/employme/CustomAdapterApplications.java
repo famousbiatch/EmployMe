@@ -53,6 +53,7 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
 
     public static class ViewHolder{
 
+        public TextView businessName;
         public TextView applicantName;
         public TextView applicantAge;
         public ImageView applicantPicture;
@@ -71,6 +72,7 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
             vi = inflater.inflate(R.layout.activity_app_card ,null);
 
             holder = new ViewHolder();
+            holder.businessName = (TextView) vi.findViewById(R.id.tvBusinessNameApp);
             holder.applicantName = (TextView) vi.findViewById(R.id.tvApplicantName);
             holder.applicantAge = (TextView) vi.findViewById(R.id.tvApplicantAge);
             holder.applicantPicture = (ImageView) vi.findViewById(R.id.imgApplicantPicture);
@@ -93,6 +95,7 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
             tempValues = null;
             tempValues = (AppCard) data.get(position);
 
+            holder.businessName.setText(tempValues.getBusinessName());
             holder.applicantName.setText(tempValues.getApplicantName());
             //holder.applicantPicture
             holder.applicantPhoneNumber.setText(tempValues.getApplicantPhoneNumber());

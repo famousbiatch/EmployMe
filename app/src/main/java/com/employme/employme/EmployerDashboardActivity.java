@@ -103,6 +103,12 @@ public class EmployerDashboardActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
+            case R.id.myAppsSECOND:
+            {
+                Intent i = new Intent(this, MyApplicationsActivity.class);
+                i.putExtra("intentName", "EmployerDashboard");
+                startActivity(i);
+            }
             case R.id.settingsSECOND:
             {
                 Intent i = new Intent(this, SettingsActivity.class);

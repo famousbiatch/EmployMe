@@ -38,6 +38,8 @@ public class ApplicationListActivity extends AppCompatActivity {
             final AppCard entry = new AppCard();
             User info = SQLiteDB.getInstance().getUser(userID);
 
+            entry.setBusinessName(SQLiteDB.getInstance().getJobListing(getIntent().getIntExtra("job_id", 99999)).get(2));
+            entry.setApplicantId(info.getId());
             entry.setApplicantName(info.getName());
             entry.setApplicantPhoneNumber(info.getPhoneNumber());
             entry.setApplicantEmail(info.getEmail());
@@ -52,6 +54,7 @@ public class ApplicationListActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent i = new Intent(this, JobPageActivity.class);
         i.putExtra("job_id", getIntent().getIntExtra("job_id", 999999));
+        i.putExtra("intentName", getIntent().getStringExtra("intentName"));
         startActivity(i);
         super.onBackPressed();
     }

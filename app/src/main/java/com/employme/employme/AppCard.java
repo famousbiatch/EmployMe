@@ -1,8 +1,13 @@
 package com.employme.employme;
 
+import android.widget.ImageView;
+import android.widget.TextView;
+
 public class AppCard {
 
     private int id;
+    private String businessName;
+    private int applicantId;
     private  String applicantName;
     private int applicantAge;
     private  String applicantPicture;
@@ -17,6 +22,22 @@ public class AppCard {
         this.applicantPhoneNumber = applicantPhoneNumber;
         this.applicantEmail = applicantEmail;
         this.applicantCity = applicantCity;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public int getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(int applicantId) {
+        this.applicantId = applicantId;
     }
 
     public int getApplicantAge() {

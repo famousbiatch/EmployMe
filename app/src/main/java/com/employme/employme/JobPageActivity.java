@@ -1,6 +1,7 @@
 package com.employme.employme;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -68,6 +69,11 @@ public class JobPageActivity extends AppCompatActivity {
         tvAgeRange.setText(info.get(8) + "-" + info.get(9));
         tvPhoneNumber.setText(info.get(5));
         tvBusinessLocation.setText(info.get(6));
+
+        if (SQLiteDB.getInstance().applicationExists(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), job_id)) {
+            btnApplyForJob.setText("CANCEL APPLICATION");
+            btnApplyForJob.setBackgroundColor(getResources().getColor(R.color.customRed));
+        }
     }
 
 
@@ -75,11 +81,20 @@ public class JobPageActivity extends AppCompatActivity {
         if (btnApplyForJob.getText().toString().startsWith("VIEW APPLICATIONS")) {
             Intent i = new Intent(this, ApplicationListActivity.class);
             i.putExtra("job_id", this.job_id);
+            i.putExtra("intentName", getIntent().getStringExtra("intentName"));
             startActivity(i);
             return;
+        } else if (btnApplyForJob.getText().toString().startsWith("CANCEL APPLICATION")) {
+            SQLiteDB.getInstance().deleteApp(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), this.job_id);
+            Toast.makeText(this, "Application canceled", Toast.LENGTH_SHORT).show();
+            btnApplyForJob.setText("APPLY FOR POSITION");
+            btnApplyForJob.setBackgroundColor(getResources().getColor(R.color.actionBar));
+        } else if (btnApplyForJob.getText().toString().startsWith("APPLY")) {
+            SQLiteDB.getInstance().createApplication(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), this.job_id);
+            Toast.makeText(this, "Application submitted", Toast.LENGTH_SHORT).show();
+            btnApplyForJob.setText("CANCEL APPLICATION");
+            btnApplyForJob.setBackgroundColor(getResources().getColor(R.color.customRed));
         }
-        //IF ALREADY APPLIED, DONT ALLOW (RETURN)
-        SQLiteDB.getInstance().createApplication(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), this.job_id);
     }
 
     public void favoriteClick(View view) {
@@ -110,6 +125,7 @@ public class JobPageActivity extends AppCompatActivity {
 
     public void deleteJob(View view) {
         SQLiteDB.getInstance().deleteJob(job_id);
+        SQLiteDB.getInstance().deleteAllApps(this.job_id);
         try {
             if (getIntent().getStringExtra("intentName").equals("JobList"))
                 startActivity(new Intent(this, JobList.class));

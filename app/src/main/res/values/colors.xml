@@ -6,4 +6,5 @@
     <color name="actionBar">#ececec</color>
     <color name="clickable">#5f81de</color>
     <color name="filter">#eaeaea</color>
+    <color name="customRed">#ffff4444</color>
 </resources>

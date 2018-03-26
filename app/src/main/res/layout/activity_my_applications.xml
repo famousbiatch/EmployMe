@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.employme.employme.MyApplicationsActivity">
+
+    <include
+        android:id="@+id/actionbarApps"
+        layout="@layout/action_bar" />
+
+    <ListView
+        android:id="@+id/lstMyApps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/actionbarApps" />
+
+</RelativeLayout>

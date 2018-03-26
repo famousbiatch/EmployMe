@@ -21,6 +21,10 @@
         android:title="Profile"
         app:showAsAction="never"></item>
 
+    <item android:id="@+id/myAppsTHIRD"
+        android:title="My Applications"
+        app:showAsAction="never"></item>
+
     <item android:id="@+id/settingsTHIRD"
         android:title="Settings"
         app:showAsAction="never"></item>

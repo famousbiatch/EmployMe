@@ -21,6 +21,48 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     private static final String[] APPLICATIONS_COLUMNS = {KEY_APP_ID, KEY_APPLICANT_ID, KEY_JOB_ID_APP};
 
+    public void deleteApp(int applicant_id, int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_APPLICATIONS,
+                KEY_APPLICANT_ID + " = ? AND " + KEY_JOB_ID_APP + " = ?",
+                new String[] { String.valueOf(applicant_id), String.valueOf(job_id) });
+
+        db.close();
+    }
+
+    public void deleteAllApps(int job_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_APPLICATIONS,
+                KEY_JOB_ID_APP + " = ?",
+                new String[] { String.valueOf(job_id) });
+
+        db.close();
+    }
+
+    public boolean applicationExists(int applicant_id, int job_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor =
+                db.query(TABLE_APPLICATIONS, // a. table
+                        APPLICATIONS_COLUMNS, // b. column names
+                        " applicant_id = ? AND job_id = ?", // c. selections
+                        new String[] { String.valueOf(applicant_id), String.valueOf(job_id) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
     public void createApplication(int applicant_id, int job_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -33,6 +75,27 @@ public class SQLiteDB extends SQLiteOpenHelper {
                 values); // key/value -> keys = column names/ values = column values
 
         db.close();
+    }
+
+    public List<Integer> getUserApps(int applicant_id) {
+        List<Integer> jobs = new LinkedList<Integer>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_APPLICATIONS,
+                APPLICATIONS_COLUMNS,
+                "applicant_id = ?",
+                new String[] { String.valueOf(applicant_id)},
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                jobs.add(cursor.getInt(2));
+            } while (cursor.moveToNext());
+        }
+        return jobs;
     }
 
     public List<Integer> getAllApplications(int job_id) {
