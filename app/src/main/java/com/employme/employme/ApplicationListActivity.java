@@ -45,6 +45,8 @@ public class ApplicationListActivity extends AppCompatActivity {
             entry.setApplicantEmail(info.getEmail());
             entry.setApplicantAge(info.getAge());
             entry.setApplicantCity(info.getCity());
+            entry.setEducation(info.getEducation());
+            entry.setLicense(info.getDriverLicense() == 1 ? true : false);
 
             CustomListViewValuesArr.add(entry);
         }

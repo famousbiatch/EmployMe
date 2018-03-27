@@ -60,6 +60,8 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
         public TextView applicantPhoneNumber;
         public TextView applicantEmail;
         public TextView applicantCity;
+        public TextView applicantEducation;
+        public TextView license;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -79,6 +81,8 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
             holder.applicantPhoneNumber = (TextView) vi.findViewById(R.id.tvApplicantNumber);
             holder.applicantEmail = (TextView) vi.findViewById(R.id.tvApplicantEmail);
             holder.applicantCity = (TextView) vi.findViewById(R.id.tvApplicantCity);
+            holder.applicantEducation = (TextView) vi.findViewById(R.id.tvApplicantEducation);
+            holder.license = (TextView) vi.findViewById(R.id.tvApplicantLicense);
 
             vi.setTag(holder);
         }
@@ -102,6 +106,8 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
             holder.applicantEmail.setText(tempValues.getApplicantEmail());
             holder.applicantAge.setText(String.valueOf(tempValues.getApplicantAge()));
             holder.applicantCity.setText(tempValues.getApplicantCity());
+            holder.applicantEducation.setText(tempValues.getEducation());
+            holder.license.setText(tempValues.isLicense() ? "Yes" : "No");
 
             vi.setOnClickListener(new OnItemClickListener(position));
         }

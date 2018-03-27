@@ -14,6 +14,8 @@ public class AppCard {
     private  String applicantPhoneNumber;
     private String applicantEmail;
     private String applicantCity;
+    private String education;
+    private boolean license;
 
     public AppCard(int applicantAge, String applicantName, String applicantPicture, String applicantPhoneNumber, String applicantEmail, String applicantCity) {
         this.applicantAge = applicantAge;
@@ -26,6 +28,22 @@ public class AppCard {
 
     public String getBusinessName() {
         return businessName;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public boolean isLicense() {
+        return license;
+    }
+
+    public void setLicense(boolean license) {
+        this.license = license;
     }
 
     public void setBusinessName(String businessName) {
