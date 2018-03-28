@@ -3,11 +3,9 @@ package com.employme.employme;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,11 +13,11 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.employme.employme.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -94,6 +92,12 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        final ProgressDialog pd = new ProgressDialog(this);
+        try {
+            pd.setTitle("Registering Account");
+            pd.show();
+        } catch (Exception x) {}
+
         User user = new User();
         user.setName(etSignupFullName.getText().toString());
         user.setEmail(etSignupEmail.getText().toString().toLowerCase());
@@ -114,12 +118,13 @@ public class SignupActivity extends AppCompatActivity {
                 filePath.putFile(picturePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        try {pd.dismiss();} catch (Exception x) {}
                     }
                 });
             } catch (Exception x) {}
         }
 
-        Intent intent = new Intent(this, JobList.class);
+        Intent intent = new Intent(this, JobListActivity.class);
         startActivity(intent);
         finish();
     }
@@ -130,8 +135,10 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getIntent().getStringExtra("intentName").equals("Login"))
+        if (getIntent().getStringExtra("intentName").equals("Login")) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
 
         super.onBackPressed();
     }

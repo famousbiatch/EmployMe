@@ -79,13 +79,14 @@ public class FavoritesActivity extends AppCompatActivity {
         {
             case R.id.refreshThird:
             {
+                CustomListViewValuesArr.clear();
                 setListData();
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.jobListSecond:
             {
-                Intent i = new Intent(this, JobList.class);
+                Intent i = new Intent(this, JobListActivity.class);
                 startActivity(i);
                 break;
             }
@@ -107,6 +108,7 @@ public class FavoritesActivity extends AppCompatActivity {
                 Intent i = new Intent(this, MyApplicationsActivity.class);
                 i.putExtra("intentName", "Favorites");
                 startActivity(i);
+                break;
             }
             case R.id.settingsTHIRD:
             {
@@ -135,6 +137,7 @@ public class FavoritesActivity extends AppCompatActivity {
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
                 Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
             }
         }

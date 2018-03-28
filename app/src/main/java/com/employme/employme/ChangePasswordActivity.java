@@ -40,6 +40,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         Toast.makeText(this, "Password changed successfully", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
+        finish();
     }
 
     public void clearFocus(View view) { view.requestFocus(); }

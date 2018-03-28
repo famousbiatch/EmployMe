@@ -1,5 +1,6 @@
 package com.employme.employme;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class CreateJobActivity extends AppCompatActivity {
 
@@ -52,6 +54,10 @@ public class CreateJobActivity extends AppCompatActivity {
             Toast.makeText(this, "Check your input", Toast.LENGTH_LONG).show();
             return;
         }
+        final ProgressDialog pd = new ProgressDialog(this);
+        try {
+        pd.setTitle("Registering Business");
+        pd.show();} catch (Exception x) {}
 
         SQLiteDB.getInstance().addJobListing(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()), etBusinessName.getText().toString(),
                 "LOGO URL HERE", etJobDescription.getText().toString(), etBusinessNumber.getText().toString(), etBusinessLocation.getText().toString(),
@@ -64,6 +70,7 @@ public class CreateJobActivity extends AppCompatActivity {
                 filePath.putFile(picturePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        try {pd.dismiss();} catch (Exception x) {}
                     }
                 });
             } catch (Exception x) {}
@@ -112,8 +119,8 @@ public class CreateJobActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))

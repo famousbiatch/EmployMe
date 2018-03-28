@@ -15,8 +15,8 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))

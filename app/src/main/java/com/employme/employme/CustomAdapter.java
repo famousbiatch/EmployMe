@@ -1,14 +1,9 @@
 package com.employme.employme;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -19,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,7 +108,6 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
                     public void onFailure(@NonNull Exception exception) {
                     }
                 });
-
             } catch (Exception x) {}
 
             vi.setOnClickListener(new OnItemClickListener(position));
@@ -138,7 +131,7 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
         public void onClick(View arg0) {
 
 
-            JobList sct = (JobList) activity;
+            JobListActivity sct = (JobListActivity) activity;
 
             sct.onItemClick(mPosition);
         }

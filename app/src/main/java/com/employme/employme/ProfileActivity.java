@@ -7,18 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.io.File;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -84,8 +78,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))

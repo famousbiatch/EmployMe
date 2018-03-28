@@ -109,7 +109,6 @@ public class CustomAdapterEmployer extends BaseAdapter implements OnClickListene
                     public void onFailure(@NonNull Exception exception) {
                     }
                 });
-
             } catch (Exception x) {}
 
             vi.setOnClickListener(new OnItemClickListener(position));

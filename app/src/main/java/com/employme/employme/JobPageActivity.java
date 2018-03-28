@@ -1,7 +1,6 @@
 package com.employme.employme;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -134,8 +133,8 @@ public class JobPageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))
@@ -149,8 +148,8 @@ public class JobPageActivity extends AppCompatActivity {
         SQLiteDB.getInstance().deleteJob(job_id);
         SQLiteDB.getInstance().deleteAllApps(this.job_id);
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))

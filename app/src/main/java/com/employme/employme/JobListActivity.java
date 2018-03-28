@@ -2,32 +2,23 @@ package com.employme.employme;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobList extends AppCompatActivity {
+public class JobListActivity extends AppCompatActivity {
 
     ListView list;
     CustomAdapter adapter;
-    public JobList CustomListView = null;
+    public JobListActivity CustomListView = null;
     public ArrayList<JobCard> CustomListViewValuesArr = new ArrayList<JobCard>();
 
     @Override
@@ -59,6 +50,9 @@ public class JobList extends AppCompatActivity {
             entry.setJobCategory(info.get(7));
 
             CustomListViewValuesArr.add(entry);
+            try {
+                Thread.sleep(1);
+            } catch (Exception x) {}
         }
         //another loop here to add ALL other jobs that don't match city
     }
@@ -68,7 +62,7 @@ public class JobList extends AppCompatActivity {
 
         Intent i = new Intent(this, JobPageActivity.class);
         i.putExtra("job_id", tempValues.getId());
-        i.putExtra("intentName", "JobList");
+        i.putExtra("intentName", "JobListActivity");
         startActivity(i);
     }
 
@@ -85,6 +79,7 @@ public class JobList extends AppCompatActivity {
         {
             case R.id.refresh:
             {
+                CustomListViewValuesArr.clear();
                 setListData();
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
@@ -104,35 +99,35 @@ public class JobList extends AppCompatActivity {
             case R.id.profile:
             {
                 Intent i = new Intent(this, ProfileActivity.class);
-                i.putExtra("intentName", "JobList");
+                i.putExtra("intentName", "JobListActivity");
                 startActivity(i);
                 break;
             }
             case R.id.myAppsFIRST:
             {
                 Intent i = new Intent(this, MyApplicationsActivity.class);
-                i.putExtra("intentName", "JobList");
+                i.putExtra("intentName", "JobListActivity");
                 startActivity(i);
                 break;
             }
             case R.id.settings:
             {
                 Intent i = new Intent(this, SettingsActivity.class);
-                i.putExtra("intentName", "JobList");
+                i.putExtra("intentName", "JobListActivity");
                 startActivity(i);
                 break;
             }
             case R.id.createJob:
             {
                 Intent i = new Intent(this, CreateJobActivity.class);
-                i.putExtra("intentName", "JobList");
+                i.putExtra("intentName", "JobListActivity");
                 startActivity(i);
                 break;
             }
             case R.id.about:
             {
                 Intent i = new Intent(this, AboutActivity.class);
-                i.putExtra("intentName", "JobList");
+                i.putExtra("intentName", "JobListActivity");
                 startActivity(i);
                 break;
             }
@@ -142,6 +137,7 @@ public class JobList extends AppCompatActivity {
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
                 Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
             }
         }

@@ -2,12 +2,9 @@ package com.employme.employme;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +50,8 @@ public class MyApplicationsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         try {
-            if (getIntent().getStringExtra("intentName").equals("JobList"))
-                startActivity(new Intent(this, JobList.class));
+            if (getIntent().getStringExtra("intentName").equals("JobListActivity"))
+                startActivity(new Intent(this, JobListActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("EmployerDashboard"))
                 startActivity(new Intent(this, EmployerDashboardActivity.class));
             else if (getIntent().getStringExtra("intentName").equals("Favorites"))

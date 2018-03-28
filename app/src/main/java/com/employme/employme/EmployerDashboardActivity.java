@@ -80,6 +80,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
         {
             case R.id.refreshSecond:
             {
+                CustomListViewValuesArr.clear();
                 setListData();
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
@@ -92,7 +93,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
             }
             case R.id.jobList:
             {
-                Intent i = new Intent(this, JobList.class);
+                Intent i = new Intent(this, JobListActivity.class);
                 startActivity(i);
                 break;
             }
@@ -108,6 +109,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
                 Intent i = new Intent(this, MyApplicationsActivity.class);
                 i.putExtra("intentName", "EmployerDashboard");
                 startActivity(i);
+                break;
             }
             case R.id.settingsSECOND:
             {
@@ -136,6 +138,7 @@ public class EmployerDashboardActivity extends AppCompatActivity {
                 Intent i = new Intent(this, LoginActivity.class);
                 startActivity(i);
                 Toast.makeText(this, "Signed out", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
             }
         }
