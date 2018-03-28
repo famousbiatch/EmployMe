@@ -3,6 +3,7 @@
     package="com.employme.employme">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -26,7 +27,6 @@
         <activity
             android:name=".SignupActivity"
             android:configChanges="orientation"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".JobList"
@@ -43,8 +43,7 @@
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CreateJobActivity"
-            android:noHistory="true" />
+            android:name=".CreateJobActivity" />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="orientation"

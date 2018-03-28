@@ -1,15 +1,28 @@
 package com.employme.employme;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
+import java.io.File;
+
 public class ProfileActivity extends AppCompatActivity {
+
+    private StorageReference mStorage;
 
     private ImageView ivProfilePicture;
     private TextView tvFullName;
@@ -26,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        mStorage = FirebaseStorage.getInstance().getReference();
         ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         tvFullName = (TextView) findViewById(R.id.tvFullName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
@@ -37,6 +51,22 @@ public class ProfileActivity extends AppCompatActivity {
         tvDriverLicense = (TextView) findViewById(R.id.tvDriverLicense);
 
         User loggedInUser = SQLiteDB.getInstance().getUser(Integer.valueOf(SQLiteDB.getInstance().getSessionUser()));
+
+        try {
+
+            mStorage.child("ProfilePictures/" + SQLiteDB.getInstance().getSessionUser()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.with(ProfileActivity.this).load(uri).fit().into(ivProfilePicture);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                }
+            });
+
+        } catch (Exception x) {}
+
         tvFullName.setText(loggedInUser.getName());
         tvEmail.setText(loggedInUser.getEmail());
         int starLength = loggedInUser.getPassword().length();

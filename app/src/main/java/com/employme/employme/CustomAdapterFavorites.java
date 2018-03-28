@@ -3,6 +3,8 @@ package com.employme.employme;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -60,7 +67,7 @@ public class CustomAdapterFavorites extends BaseAdapter implements OnClickListen
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if(convertView == null){
 
@@ -90,9 +97,20 @@ public class CustomAdapterFavorites extends BaseAdapter implements OnClickListen
 
             holder.text.setText(tempValues.getBusinessName());
             holder.text1.setText(tempValues.getJobCategory());
-            holder.image.setImageResource(
-                    res.getIdentifier("com.example.BusinessLogo:drawable/" + tempValues.getLogo(),
-                            null,null));
+            try {
+
+                FirebaseStorage.getInstance().getReference().child("BusinessLogos/" + tempValues.getBusinessName()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(activity).load(uri).fit().into(holder.image);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                });
+
+            } catch (Exception x) {}
 
             vi.setOnClickListener(new OnItemClickListener(position));
         }
