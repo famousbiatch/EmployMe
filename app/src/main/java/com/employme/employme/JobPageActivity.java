@@ -86,7 +86,7 @@ public class JobPageActivity extends AppCompatActivity {
             FirebaseStorage.getInstance().getReference().child("BusinessLogos/" + tvBusinessNameFull.getText().toString()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.with(JobPageActivity.this).load(uri).fit().into(ivLogoFull);
+                    Picasso.with(JobPageActivity.this).load(uri).fit().placeholder(R.drawable.ic_refresh).error(R.drawable.ic_refresh).into(ivLogoFull);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

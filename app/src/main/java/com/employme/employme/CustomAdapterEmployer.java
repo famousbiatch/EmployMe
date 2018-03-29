@@ -102,7 +102,7 @@ public class CustomAdapterEmployer extends BaseAdapter implements OnClickListene
                 FirebaseStorage.getInstance().getReference().child("BusinessLogos/" + tempValues.getBusinessName()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.with(activity).load(uri).fit().into(holder.image);
+                        Picasso.with(activity).load(uri).fit().placeholder(R.drawable.ic_refresh).error(R.drawable.ic_refresh).into(holder.image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

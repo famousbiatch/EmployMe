@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -96,12 +98,13 @@ public class CustomAdapter extends BaseAdapter implements OnClickListener {
 
             holder.text.setText(tempValues.getBusinessName());
             holder.text1.setText(tempValues.getJobCategory());
+
             try {
 
                 FirebaseStorage.getInstance().getReference().child("BusinessLogos/" + tempValues.getBusinessName()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.with(activity).load(uri).fit().into(holder.image);
+                        Picasso.with(activity).load(uri).fit().placeholder(R.drawable.ic_refresh).error(R.drawable.ic_refresh).into(holder.image);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

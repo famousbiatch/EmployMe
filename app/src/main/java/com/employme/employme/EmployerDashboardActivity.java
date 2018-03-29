@@ -49,7 +49,6 @@ public class EmployerDashboardActivity extends AppCompatActivity {
                 continue;
 
             entry.setId(Integer.valueOf(info.get(0)));
-            entry.setLogo(info.get(3));
             entry.setBusinessName(info.get(2));
             entry.setJobCategory(info.get(7));
 

@@ -2,7 +2,9 @@ package com.employme.employme;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,6 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +52,10 @@ public class JobListActivity extends AppCompatActivity {
             List<String> info = SQLiteDB.getInstance().getJobListing(jobID); //if country & city dont match user, continue; statement
 
             entry.setId(Integer.valueOf(info.get(0)));
-            entry.setLogo(info.get(3));
             entry.setBusinessName(info.get(2));
             entry.setJobCategory(info.get(7));
 
             CustomListViewValuesArr.add(entry);
-            try {
-                Thread.sleep(1);
-            } catch (Exception x) {}
         }
         //another loop here to add ALL other jobs that don't match city
     }

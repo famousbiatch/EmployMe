@@ -2,6 +2,7 @@ package com.employme.employme;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 public class JobCard {
 
@@ -16,12 +17,11 @@ public class JobCard {
     }
 
     private  String businessName;
-    private  String logo;
+    private ImageView logo;
     private  String jobCategory;
 
     public JobCard() {
         businessName = "";
-        logo = "";
         jobCategory = "";
     }
 
@@ -33,11 +33,11 @@ public class JobCard {
         this.businessName = businessName;
     }
 
-    public String getLogo() {
+    public ImageView getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(ImageView logo) {
         this.logo = logo;
     }
 
@@ -49,7 +49,7 @@ public class JobCard {
         this.jobCategory = jobCategory;
     }
 
-    public JobCard(String businessName, String logo, String jobCategory) {
+    public JobCard(String businessName, ImageView logo, String jobCategory) {
         this.businessName = businessName;
         this.logo = logo;
         this.jobCategory = jobCategory;

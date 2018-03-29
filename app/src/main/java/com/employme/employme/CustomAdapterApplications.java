@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.media.Image;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -67,7 +74,7 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if (convertView == null) {
 
@@ -101,13 +108,27 @@ public class CustomAdapterApplications extends BaseAdapter implements OnClickLis
 
             holder.businessName.setText(tempValues.getBusinessName());
             holder.applicantName.setText(tempValues.getApplicantName());
-            //holder.applicantPicture
             holder.applicantPhoneNumber.setText(tempValues.getApplicantPhoneNumber());
             holder.applicantEmail.setText(tempValues.getApplicantEmail());
             holder.applicantAge.setText(String.valueOf(tempValues.getApplicantAge()));
             holder.applicantCity.setText(tempValues.getApplicantCity());
             holder.applicantEducation.setText(tempValues.getEducation());
             holder.license.setText(tempValues.isLicense() ? "Yes" : "No");
+
+            try {
+
+                FirebaseStorage.getInstance().getReference().child("ProfilePictures/" + String.valueOf(tempValues.getApplicantId())).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.with(activity).load(uri).fit().placeholder(R.drawable.ic_no_profile_pic).error(R.drawable.ic_no_profile_pic).into(holder.applicantPicture);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                });
+
+            } catch (Exception x) {}
 
             vi.setOnClickListener(new OnItemClickListener(position));
         }

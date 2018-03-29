@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
             mStorage.child("ProfilePictures/" + SQLiteDB.getInstance().getSessionUser()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.with(ProfileActivity.this).load(uri).fit().into(ivProfilePicture);
+                    Picasso.with(ProfileActivity.this).load(uri).fit().placeholder(R.drawable.ic_no_profile_pic).error(R.drawable.ic_no_profile_pic).into(ivProfilePicture);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
