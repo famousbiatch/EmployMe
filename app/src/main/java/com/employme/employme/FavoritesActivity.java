@@ -79,8 +79,8 @@ public class FavoritesActivity extends AppCompatActivity {
         {
             case R.id.refreshThird:
             {
-                CustomListViewValuesArr.clear();
-                setListData();
+                finish();
+                startActivity(getIntent());
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
             }

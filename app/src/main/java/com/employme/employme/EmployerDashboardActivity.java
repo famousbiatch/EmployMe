@@ -80,8 +80,8 @@ public class EmployerDashboardActivity extends AppCompatActivity {
         {
             case R.id.refreshSecond:
             {
-                CustomListViewValuesArr.clear();
-                setListData();
+                finish();
+                startActivity(getIntent());
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
             }

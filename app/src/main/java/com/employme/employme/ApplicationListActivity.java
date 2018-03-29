@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -62,5 +63,10 @@ public class ApplicationListActivity extends AppCompatActivity {
     }
 
     public void onItemClick(int mPosition) {
+    }
+
+    public void refresh(View view) {
+        finish();
+        startActivity(getIntent());
     }
 }

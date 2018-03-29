@@ -79,8 +79,8 @@ public class JobListActivity extends AppCompatActivity {
         {
             case R.id.refresh:
             {
-                CustomListViewValuesArr.clear();
-                setListData();
+                finish();
+                startActivity(getIntent());
                 Toast.makeText(this, "Refresh successful", Toast.LENGTH_SHORT).show();
                 break;
             }
