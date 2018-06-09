@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/muli"
-        android:text="EmployMe(C) LLC is a private hi-tech company headquartered in 7aret el room, Nazareth, Israel.\n\nFor business inquiries, visit our el 7ara el sharqeye branch located near some mosque. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApp developers: Darran Fahoum\n\nFunded by: Ali Sallam\n\n(C) EmployMe Corp. LLC, all rights reserved."
+        android:text="EmployMe(C) LLC is a private hi-tech company headquartered in 7aret el room, Nazareth, Israel.\n\nFor business inquiries, visit our el 7ara el sharqeye branch located near some mosque. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Devs: Ivan, 3di, Darran\n\nFunded by: Ali Sallam\n\n(C) EmployMe Corp. LLC, all rights reserved."
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

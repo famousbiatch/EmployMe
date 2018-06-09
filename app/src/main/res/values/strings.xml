@@ -86,9 +86,17 @@
     </string-array>
 
     <string-array name="job_filter">
-        <item>Job Filter</item>
-        <item>Test1</item>
-        <item>Test2</item>
+        <item>Show all</item>
+        <item>Show relevant jobs</item>
+        <item>Show according to category:</item>
+        <item>Chef</item>
+        <item>Programmer</item>
+        <item>Actor</item>
+        <item>Architecht</item>
+        <item>Pilot</item>
+        <item>Lawyer</item>
+        <item>Janitor</item>
+        <item>Nurse</item>
     </string-array>
 
     <string-array name="city_list">
